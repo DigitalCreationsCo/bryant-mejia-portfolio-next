@@ -1,6 +1,5 @@
 'use client';
 import * as Icon from '@phosphor-icons/react';
-import { useEffect } from 'react';
 
 export default function Home() {
   // useEffect(() => {
