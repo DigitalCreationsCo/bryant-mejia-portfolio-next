@@ -1,11 +1,39 @@
 'use client';
 import * as Icon from '@phosphor-icons/react';
+import { useEffect } from 'react';
 
 export default function Home() {
+  useEffect(() => {
+    function updateInnerGradient(event: MouseEvent) {
+      const gradientDiv = document.getElementById('inner-gradient');
+      if (!gradientDiv) return;
+      const mouseX = event.clientX;
+      const mouseY = event.clientY;
+
+      // Get the dimensions of the window
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+
+      // Calculate the position of the mouse relative to the center of the window
+      const offsetX = (mouseX / windowWidth - 0.5) * windowWidth;
+      const offsetY = (mouseY / windowHeight - 0.5) * windowHeight;
+
+      // Set the background position to center the gradient on the mouse pointer
+      gradientDiv.style.backgroundPosition = offsetX + 'px ' + offsetY + 'px';
+      gradientDiv.style.backgroundRepeat = 'no-repeat';
+    }
+
+    document.addEventListener('mousemove', updateInnerGradient);
+
+    () => {
+      document.removeEventListener('mousemove', updateInnerGradient);
+    };
+  }, []);
+
   return (
     <main
       id="outer-gradient"
-      className="overflow-clip flex min-h-screen flex-col items-center justify-between p-12 px-16 bg-gradient-radial from-blue-500 bg-blue-700 text-white tracking-tight"
+      className="flex min-h-screen flex-col items-center justify-between p-12 px-16 bg-gradient-radial from-blue-500 bg-blue-700 text-white tracking-tight"
     >
       <section className="z-10 w-full items-center justify-between xl:flex">
         <p className="text-[2em]">
@@ -29,20 +57,25 @@ export default function Home() {
         </div>
       </section>
 
-      <section
-        id="inner-gradient"
-        className="ml-auto w-full lg:max-w-7xl pt-16 pb-52 xl:pt-52 bg-orange-400 bg-clip-text"
-      >
-        <h1 className="text-7xl xl:text-[8em] leading-[1em] font-black text-transparent z-10">
-          Frontend / Fullstack developer based in New York City.
+      <section className="relative ml-auto w-full lg:max-w-7xl pt-16 pb-52 xl:pt-52 bg-clip-text bg-white">
+        <h1 className="text-7xl xl:text-[8em] leading-[1em] font-black text-transparent">
+          <span className="hover:text-orange-500">Frontend</span>
+          <span className="hover:text-orange-500"> / </span>
+          <span className="hover:text-orange-500">Fullstack</span>{' '}
+          <span className="hover:text-orange-500">developer</span>{' '}
+          <span className="hover:text-orange-500">based</span>{' '}
+          <span className="hover:text-orange-500">in</span>{' '}
+          <span className="hover:text-orange-500">New</span>{' '}
+          <span className="hover:text-orange-500">York</span>
+          <span className="hover:text-orange-500"> City.</span>
         </h1>
       </section>
 
       <Section>
         <h3 className="text-4xl whitespace-pre-line">
           {`I am a 5 year professional software engineer.
-          I turn ideas 💡
-          into businesses 💲💲💲`}
+          I turn ideas 💡 
+          into businesses. 💲💲💲`}
         </h3>
       </Section>
 
@@ -108,6 +141,18 @@ export default function Home() {
         description="TinyMail is an application for newsletter automation. It integrates with Google Sheets using OAuth2."
         link="https://tiny-mail.vercel.app"
       />
+
+      <div className="w-full md:w-3/4 lg:max-w-5xl mb-4 lg:w-3/4 ml-auto mr-24 lg:text-right">
+        <p>Previous Portfolios</p>
+        <p>
+          <a
+            href="https://v1.bryantmejia.com"
+            className="hover:text-orange-400"
+          >
+            v1
+          </a>
+        </p>
+      </div>
 
       <Section>
         <p>
