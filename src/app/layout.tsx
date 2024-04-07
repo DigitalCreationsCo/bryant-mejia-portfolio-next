@@ -6,12 +6,16 @@ const ruda = Ruda({
   weight: '400',
   subsets: ['latin'],
   variable: '--font-ruda',
+  preload: true,
+  fallback: ['sans-serif'],
 });
 
 const rethink_sans = Rethink_Sans({
   weight: '400',
   subsets: ['latin'],
   variable: '--font-rethink-sans',
+  preload: true,
+  fallback: ['sans-serif'],
 });
 
 export const metadata: Metadata = {
